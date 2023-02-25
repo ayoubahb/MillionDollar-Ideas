@@ -96,9 +96,6 @@
         }
 
         .main .center .my_post .post_bottom {
-            width: 95%;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
             margin: 5px auto;
             position: relative;
         }
@@ -113,7 +110,7 @@
             display: flex;
             align-items: self-start;
             flex-direction: column;
-            margin: 0 auto;
+
             padding: 7px 30px;
             position: relative;
             z-index: 100;
@@ -171,26 +168,26 @@
     <div class="main flex mt-14 mx-auto justify-center">
         <div class="center w-full p-5">
             <div class="my_post">
-                <div class="post_top">
-                    <img src="image/profile.png" />
-                    <form action="/posts">
-                        <input type="text" placeholder="What's on you mind, John?" />
-                    </form>
-                </div>
-
-                <hr />
-
-                <div class="post_bottom">
-
-                    <div class="flex mb-3">
-                        <i class="fa-solid fa-images green"></i>
-                        <p>Photo</p>
+                <form action="/posts" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="post_top">
+                        <img src="image/profile.png" />
+                        <input type="text" placeholder="What's on you mind, John?" name="description"/>
                     </div>
-                    <div class="post_icon">
-                        <input type="file">
+                    <hr />
+                    <div class="post_bottom flex items-center justify-between">
+                        <div class="flex mb-3">
+                            <i class="fa-solid fa-images green"></i>
+                            <p>Photo</p>
+                        </div>
+                        <div class="post_icon">
+                            <input type="file" name="image">
+                        </div>
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded h-9">
+                            Post
+                        </button>
                     </div>
-
-                </div>
+                </form>
             </div>
             <div class="friends_post rounded-md py-2 px-4 my-2 mx-0">
                 <div class="friend_post_top mb-4">

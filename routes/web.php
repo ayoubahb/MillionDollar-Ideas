@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,4 @@ Route::post('/logout', [Usercontroller::class, 'logout'])->middleware('auth');
 
 //------------------------------------------------------------------------------------------------
 
-Route::post('/posts', [Usercontroller::class, 'logout'])->middleware('auth');
+Route::post('/posts', [PostController::class, 'store'])->middleware('auth');

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +13,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Category::create([
+            'name' => 'Technology'
+        ]);
+        Category::create([
+            'name' => 'Art and design'
+        ],);
+        Category::create([
+            'name' => 'Business and entrepreneurship'
+        ],);
+        Category::create([
+            'name' => 'Education'
+        ],);
+        Category::create([
+            'name' => 'Health and wellness'
+        ],);
+        Category::create([
+            'name' => 'Social and environmental issues'
+        ],);
+        Category::create([
+            'name' => 'Personal development'
+        ],);
     }
 }
