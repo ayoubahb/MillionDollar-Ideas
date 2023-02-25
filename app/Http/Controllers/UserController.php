@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -12,7 +13,10 @@ class UserController extends Controller
     //show create form
     public function index()
     {
-        return view('index');
+        // return view('index');
+        $categories = Category::all();
+
+        return view('index', ['categories' => $categories]);
     }
     //Show Login Form
     public function login()
