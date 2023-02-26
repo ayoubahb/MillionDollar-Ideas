@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -15,8 +16,12 @@ class UserController extends Controller
     {
         // return view('index');
         $categories = Category::all();
+        $posts = Post::with('user')->latest()->filter(request(['category']))->get();
 
-        return view('index', ['categories' => $categories]);
+        return view('index', [
+            'categories' => $categories,
+            'posts' => $posts,
+        ]);
     }
     //Show Login Form
     public function login()

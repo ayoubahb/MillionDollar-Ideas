@@ -18,4 +18,8 @@ class User extends Authenticatable
         'password',
         'dob'
     ];
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'userId');
+    }
 }

@@ -17,22 +17,25 @@ class DatabaseSeeder extends Seeder
             'name' => 'Technology'
         ]);
         Category::create([
-            'name' => 'Art and design'
+            'name' => 'Art'
         ],);
         Category::create([
-            'name' => 'Business and entrepreneurship'
+            'name' => 'Business'
         ],);
         Category::create([
             'name' => 'Education'
         ],);
         Category::create([
-            'name' => 'Health and wellness'
+            'name' => 'Health'
         ],);
         Category::create([
-            'name' => 'Social and environmental issues'
+            'name' => 'Social'
         ],);
         Category::create([
-            'name' => 'Personal development'
+            'name' => 'Personal'
+        ],);
+        Category::create([
+            'name' => 'Other'
         ],);
     }
 }

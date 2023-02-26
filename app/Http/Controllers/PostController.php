@@ -9,9 +9,9 @@ class PostController extends Controller
 {
     public function store(Request $request)
     {
-        // dd($request);
         $formFields = $request->validate(([
             'description'  => 'required',
+            'categoryId'   => 'required'
         ]));
         
         if ($request->hasFile('image')) {
@@ -19,7 +19,6 @@ class PostController extends Controller
         }
         
         $formFields['userId'] = auth()->id();
-        $formFields['categoryId'] = 1;
         // dd($formFields);
 
 

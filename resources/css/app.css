@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+nav {
+    border-bottom: 1px solid #cccccc;
+    background: #fff;
+    z-index: 1000;
+}
+
+nav .right img {
+    line-height: 45px;
+}
+
+/*-----------------main---------------*/
+
+.main .center {
+    max-width: 740px;
+}
+
+.main .center .friends_post {
+    background: #fff;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.main .center .friends_post > img {
+    height: 450px;
+}
+
+.main .center .friends_post .comment_warpper .comment_search {
+    width: 95%;
+    border-radius: 30px;
+}
+
+.main .center .my_post,
+.categories {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 7px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+}
+
+.main .center .my_post img {
+    width: 45px;
+    height: 45px;
+}
+
+.main .center .my_post .post_top {
+    display: flex;
+    align-items: center;
+}
+
+.main .center .my_post .post_top input:hover {
+    background: #e3e3e3;
+    cursor: pointer;
+}
+
+.main .center .my_post hr {
+    width: 100%;
+    height: 1px;
+    background: #cccccc;
+    border: 0;
+    margin: 10px 0;
+}
+
+.main .center .my_post .post_bottom {
+    margin: 5px auto;
+    position: relative;
+}
+
+.main .center .my_post .post_bottom div:first-child {
+    position: absolute;
+    top: 14px;
+    left: 65px;
+}
+
+::-webkit-file-upload-button {
+    padding: 7px 16px;
+    color: transparent;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+}
+
+.main .center .my_post .post_bottom i.green {
+    font-size: 23px;
+    color: #27cc37;
+    margin-right: 8px;
+}
+/* ul a li{
+    background-color: black;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+} */

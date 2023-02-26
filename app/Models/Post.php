@@ -15,4 +15,22 @@ class Post extends Model
         'categoryId',
         'file'
     ];
+
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['category'] ?? false) {
+            $categoryId = Category::where('name', $filters['category'])->first()->id;
+            $query->where('categoryId', $categoryId);
+        };
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userId');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'categoryId');
+    }
 }
