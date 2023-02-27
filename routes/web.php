@@ -15,8 +15,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/',[UserController::class, 'index'])->middleware('auth');
-//Shoe login form
+//Show login form
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 //Shoe register form
 Route::get('/register', [UserController::class, 'register'])->middleware('guest');;
@@ -28,5 +27,12 @@ Route::post('/users', [UserController::class, 'store']);
 Route::post('/logout', [Usercontroller::class, 'logout'])->middleware('auth');
 
 //------------------------------------------------------------------------------------------------
-
+Route::get('/',[PostController::class, 'index'])->middleware('auth');
+//create post
 Route::post('/posts', [PostController::class, 'store'])->middleware('auth');
+//Show edit form
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->middleware('auth');
+//Edit listing
+Route::put('/posts/{post}', [PostController::class, 'update'])->middleware('auth');
+//Edit listing
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('auth');

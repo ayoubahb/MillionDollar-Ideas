@@ -11,18 +11,7 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    //show create form
-    public function index()
-    {
-        // return view('index');
-        $categories = Category::all();
-        $posts = Post::with('user')->latest()->filter(request(['category']))->get();
-
-        return view('index', [
-            'categories' => $categories,
-            'posts' => $posts,
-        ]);
-    }
+    
     //Show Login Form
     public function login()
     {

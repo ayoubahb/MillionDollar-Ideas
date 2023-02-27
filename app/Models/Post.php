@@ -19,8 +19,10 @@ class Post extends Model
     public function scopeFilter($query, array $filters)
     {
         if ($filters['category'] ?? false) {
-            $categoryId = Category::where('name', $filters['category'])->first()->id;
-            $query->where('categoryId', $categoryId);
+            $category= $filters['category'];
+            $query->whereHas('categories', function ($query) use ($category) {
+                $query->where('name', $category);
+            });
         };
     }
 
@@ -29,8 +31,8 @@ class Post extends Model
         return $this->belongsTo(User::class, 'userId');
     }
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class, 'categoryId');
+        return $this->belongsToMany(Category::class, 'postcatgs', 'postId', 'categoryId');
     }
 }
