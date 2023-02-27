@@ -14,7 +14,7 @@ class PostController extends Controller
         $categories = Category::all();
 
 
-        $posts = Post::with('user','categories')->latest()->filter(request(['category']))->get();
+        $posts = Post::with('user', 'categories')->latest()->filter(request(['category']))->get();
         return view('index', [
             'categories' => $categories,
             'posts' => $posts,
@@ -22,7 +22,7 @@ class PostController extends Controller
     }
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $formFields = $request->validate(([
             'description'  => 'required',
             'categories' => 'required|array',
@@ -44,25 +44,35 @@ class PostController extends Controller
     //show edit form
     public function edit(Post $post)
     {
-        return view('edit', ['post' => $post]);
+        $arr = [];
+        for ($i = 0; $i < count($post->categories); $i++) {
+            array_push($arr, $post->categories[$i]->name);
+        }
+
+        return view('edit', [
+            'post' => $post,
+            'postctg' => $arr,
+            'categories' => Category::all(),
+        ]);
     }
 
     // update
     public function update(Request $request, Post $post)
     {
-        $formFields = $request->validate(([
-            'description'  => 'required',
-            'categoryId'   => 'required'
-        ]));
+        $formFields = $request->validate([
+            'description' => 'required',
+            'categories' => 'required|array',
+        ]);
+
+        $post->description = $formFields['description'];
+        $post->categories()->sync($formFields['categories']);
 
         if ($request->hasFile('image')) {
-            $formFields['file'] = $request->file('image')->store('images', 'public');
+            $post->file = $request->file('image')->store('images', 'public');
         }
+        $post->save();
 
-        $formFields['userId'] = auth()->id();
-
-        $post->update($formFields);
-        return redirect('/')->with('message', 'Post updated seccessfully');
+        return redirect('/')->with('message', 'Post updated successfully');
     }
     //delete
     public function destroy(Post $post)
