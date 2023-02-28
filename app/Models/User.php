@@ -22,4 +22,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class, 'userId');
     }
+    
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class, 'userId');
+    }
 }

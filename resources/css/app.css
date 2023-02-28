@@ -97,10 +97,7 @@ nav .right img {
     color: #27cc37;
     margin-right: 8px;
 }
-/* ul a li{
-    background-color: black;
-    color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
-} */
+.comment_warpper form button {
+    top: 20%;
+    right: 10px;
+}

@@ -42,7 +42,7 @@
                     </div>
 
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded h-9 ml-16">
-                        Post
+                        Update
                     </button>
                 </div>
             </form>

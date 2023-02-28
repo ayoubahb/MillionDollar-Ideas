@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,10 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 Route::post('/users', [UserController::class, 'store']);
 //logout User
 Route::post('/logout', [Usercontroller::class, 'logout'])->middleware('auth');
+
+//------------------------------------------------------------------------------------------------
+
+Route::post('/post/{post}/commentaire',[CommentaireController::class, 'store'])->middleware('auth');
 
 //------------------------------------------------------------------------------------------------
 Route::get('/',[PostController::class, 'index'])->middleware('auth');

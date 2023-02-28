@@ -10,6 +10,7 @@
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
@@ -17,7 +18,9 @@
     <nav class="w-full h-16 flex items-center justify-between fixed top-0">
         <div class="left flex items-center justify-center ml-5">
             <div class="logo">
-                <img src="{{ asset('image/logoidea.png') }}" class="w-16 cursor-pointer my-1 mx-0" />
+                <a href="/">
+                    <img src="{{ asset('image/logoidea.png') }}" class="w-16 cursor-pointer my-1 mx-0" />
+                </a>
             </div>
         </div>
 
@@ -28,7 +31,8 @@
                     <i class="fa-solid fa-door-closed"></i> Logout
                 </button>
             </form>
-            <img src="{{asset("image/user.png")}}" class="w-8 h-8 object-cover object-center ml-2 cursor-pointe rounded-full" />
+            <img src="{{ asset('image/user.png') }}"
+                class="w-8 h-8 object-cover object-center ml-2 cursor-pointe rounded-full" />
         </div>
     </nav>
 

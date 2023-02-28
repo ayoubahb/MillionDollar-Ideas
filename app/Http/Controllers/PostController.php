@@ -13,8 +13,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
 
-
-        $posts = Post::with('user', 'categories')->latest()->filter(request(['category']))->get();
+        $posts = Post::with('user', 'categories', 'commentaires')->latest()->filter(request(['category']))->get();
         return view('index', [
             'categories' => $categories,
             'posts' => $posts,

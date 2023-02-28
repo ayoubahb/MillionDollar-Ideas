@@ -35,4 +35,9 @@ class Post extends Model
     {
         return $this->belongsToMany(Category::class, 'postcatgs', 'postId', 'categoryId');
     }
+    
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class, 'postId');
+    }
 }

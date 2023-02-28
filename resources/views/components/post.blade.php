@@ -2,14 +2,13 @@
 <div class="friends_post rounded-md py-2 px-4 my-2 mx-0">
     <div class="friend_post_top mb-4">
         <div class="img_and_name flex items-center">
-            <img src="{{asset("image/user.png")}}" class="w-12 h-12 object-cover object-center mr-2 cursor-pointer rounded-full" />
+            <img src="{{ asset('image/user.png') }}"
+                class="w-12 h-12 object-cover object-center mr-2 cursor-pointer rounded-full" />
 
             <div class="friends_name flex justify-between w-full">
                 <p class="font-bold cursor-pointer">{{ $post->user->name }}</p>
                 @if ($post->userId == Auth::user()->id)
                     <div class="flex justify-between w-10">
-                        {{-- <a href=""><i class="fa-solid fa-trash"></i></a>
-                                            <a href="/post/{{ $post->id }}/edit"><i class="fa-solid fa-pencil"></i></a> --}}
                         <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="dropdownDotsHorizontal"
                             class="inline-flex items-center p-2 text-sm font-medium text-center focus:outline-none dark:text-black"
                             type="button">
@@ -72,12 +71,26 @@
 
     <hr class="w-full h-px bg-gray-400 my-2 mx-0" />
 
-    <div class="comment_warpper flex items-center">
+    <div class="comment_warpper flex items-center justify-between ">
         <img src="image/user.png" class="w-8 h-8 object-cover object-center mr-4 rounded-full" />
-
-        <div class="comment_search py-1 px-4 bg-gray-200">
-            <input type="text" placeholder="Write a comment"
-                class="w-full h-8 outline-none border-0 bg-transparent" />
-        </div>
+        <form action="/post/{{$post->id}}/commentaire" method="post" class="relative w-11/12">
+            @csrf
+            <div class="py-1 px-4 bg-gray-200  w-full rounded">
+                <input type="text" placeholder="Write a comment"
+                    class="w-full h-8 outline-none border-0 bg-transparent" name="text"/>
+            </div>
+            <button class="absolute"><i class="fa-regular fa-paper-plane"></i></button>
+        </form>
     </div>
+    @foreach ($post->commentaires as $commentaire)
+        <div class="mt-3 flex flex-col">
+            <div class="flex">
+                <img src="image/user.png" class="w-8 h-8 object-cover object-center mr-4 rounded-full" />
+                <h5 class="font-semibold ml-2.5">{{ $commentaire->user->name }}</h5>
+            </div>
+            <div class="bg-gray-200 rounded self-end w-11/12 p-3">
+                {{ $commentaire->text }}
+            </div>
+        </div>
+    @endforeach
 </div>

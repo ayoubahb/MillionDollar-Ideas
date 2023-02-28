@@ -6,7 +6,7 @@
                 <div class="post_top">
                     <img src="{{ asset('image/user.png') }}" class=" object-cover object-center rounded-full" />
                     <input type="text" placeholder="What's on you mind?" name="description"
-                        class="w-full p-2 ml-5 bg-gray-200 border-0 outline-0 rounded-lg" />
+                        class="w-full p-2 ml-5 bg-gray-200 border-0 outline-0 rounded-lg" autocomplete="off"/>
                 </div>
                 @error('description')
                     <p class="text-red-500 text-xs mt-1 pl-16">{{ $message }}</p>
