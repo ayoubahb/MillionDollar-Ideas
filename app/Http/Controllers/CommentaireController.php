@@ -28,7 +28,6 @@ class CommentaireController extends Controller
 
         $formFields['userId'] = auth()->id();
         $formFields['postId'] = $post->id;
-        $formFields['like'] = 0;
 
 
         Commentaire::create($formFields);

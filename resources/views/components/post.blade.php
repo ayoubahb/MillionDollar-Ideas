@@ -1,4 +1,4 @@
-@props(['post'])
+{{-- @props(['post'])
 <div class="friends_post rounded-md py-2 px-4 my-2 mx-0">
     <div class="friend_post_top mb-4">
         <div class="img_and_name flex items-center">
@@ -73,11 +73,11 @@
 
     <div class="comment_warpper flex items-center justify-between ">
         <img src="image/user.png" class="w-8 h-8 object-cover object-center mr-4 rounded-full" />
-        <form action="/post/{{$post->id}}/commentaire" method="post" class="relative w-11/12">
+        <form action="/post/{{ $post->id }}/commentaire" method="post" class="relative w-11/12">
             @csrf
             <div class="py-1 px-4 bg-gray-200  w-full rounded">
                 <input type="text" placeholder="Write a comment"
-                    class="w-full h-8 outline-none border-0 bg-transparent" name="text"/>
+                    class="w-full h-8 outline-none border-0 bg-transparent" name="text" autocomplete="off" />
             </div>
             <button class="absolute"><i class="fa-regular fa-paper-plane"></i></button>
         </form>
@@ -93,4 +93,65 @@
             </div>
         </div>
     @endforeach
-</div>
+</div> --}}
+@props(['post'])
+<article
+    {{ $attributes->merge(['class' => 'transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }}>
+    <div class="py-6 px-5">
+        <div>
+            <img src="{{ $post->file ? asset('storage/' . $post->file) : asset('image/no-image.png') }}" alt="Post image"
+                class="rounded-xl w-full" />
+        </div>
+
+        <div class="mt-8 flex flex-col justify-between">
+            <header>
+                <div class="space-x-2">
+                    @foreach ($post->categories as $category)
+                        <a href="/?category={{ $category->name }}"
+                            class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
+                            style="font-size: 10px">{{ $category->name }}</a>
+                    @endforeach
+                </div>
+
+                <div class="mt-4">
+                    <a href="/post/{{ $post->id }}">
+                        <h1 class="text-3xl">
+                            {{ $post->title }}
+                        </h1>
+                    </a>
+
+                    <span class="mt-2 block text-gray-400 text-xs">
+                        Published <time>{{ $post->created_at->diffForHumans() }}</time>
+                    </span>
+                </div>
+            </header>
+
+            <div class="text-sm mt-4">
+                <p>
+                    {{ $post->description }}
+                </p>
+
+            </div>
+
+            <div class="flex items-center gap-2 mt-2">
+                <span><i class="fa-regular fa-heart"></i> {{$post->likes->count()}}</span>
+                <span><i class="fa-regular fa-message"></i> {{$post->commentaires->count()}}</span>
+            </div>
+
+            <footer class="flex justify-between items-center mt-8">
+                <div class="flex items-center text-sm">
+                    <img src="/image/user.png" alt="Lary avatar" width="50" />
+                    <div class="ml-3">
+                        <h5 class="font-bold">{{ $post->user->name }}</h5>
+                    </div>
+                </div>
+
+                <div>
+                    <a href="/post/{{ $post->id }}"
+                        class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8">Read
+                        More</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+</article>

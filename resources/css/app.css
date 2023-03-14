@@ -8,7 +8,7 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-
+/* 
 nav {
     border-bottom: 1px solid #cccccc;
     background: #fff;
@@ -17,10 +17,10 @@ nav {
 
 nav .right img {
     line-height: 45px;
-}
+} */
 
 /*-----------------main---------------*/
-
+/* 
 .main .center {
     max-width: 740px;
 }
@@ -100,4 +100,4 @@ nav .right img {
 .comment_warpper form button {
     top: 20%;
     right: 10px;
-}
+} */

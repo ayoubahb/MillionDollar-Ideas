@@ -38,6 +38,11 @@ class Post extends Model
     
     public function commentaires()
     {
-        return $this->hasMany(Commentaire::class, 'postId');
+        return $this->hasMany(Commentaire::class, 'postId')->latest();
+    }
+    
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }

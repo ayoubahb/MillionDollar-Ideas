@@ -13,7 +13,6 @@ class Commentaire extends Model
         'userId',
         'postId',
         'text',
-        'like'
     ];
 
     public function post()

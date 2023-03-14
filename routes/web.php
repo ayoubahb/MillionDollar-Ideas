@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentaireController;
@@ -29,15 +30,24 @@ Route::post('/logout', [Usercontroller::class, 'logout'])->middleware('auth');
 
 //------------------------------------------------------------------------------------------------
 
+Route::post('/post/{post}/like',[LikeController::class, 'toggleLike'])->middleware('auth');
+
+//------------------------------------------------------------------------------------------------
 Route::post('/post/{post}/commentaire',[CommentaireController::class, 'store'])->middleware('auth');
 
 //------------------------------------------------------------------------------------------------
 Route::get('/',[PostController::class, 'index'])->middleware('auth');
+//show form create post
+Route::get('/create', [PostController::class, 'create'])->middleware('auth');
+//show manage posts
+Route::get('/posts/manage', [PostController::class, 'manage'])->middleware('auth');
 //create post
 Route::post('/posts', [PostController::class, 'store'])->middleware('auth');
 //Show edit form
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->middleware('auth');
 //Edit listing
 Route::put('/posts/{post}', [PostController::class, 'update'])->middleware('auth');
-//Edit listing
+//delete listing
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('auth');
+
+Route::get('/post/{post}', [PostController::class, 'show'])->middleware('auth');
