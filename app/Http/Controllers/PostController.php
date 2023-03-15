@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
 
-        $posts = Post::with('user', 'categories', 'commentaires', 'likes.post')->latest()->filter(request(['category']))->get();
+        $posts = Post::with('user', 'categories')->latest()->filter(request(['category']))->get();
         // dd($posts);
         return view('index', [
             'categories' => $categories,
@@ -24,18 +25,34 @@ class PostController extends Controller
     //show listing
     public function show(Post $post)
     {
+        $showPost = Post::with(['commentaires.likes.user', 'likes.user'])->findOrFail($post->id);
 
-        $liked = DB::table('likes')
-            ->where('user_id', auth()->id())
+        $liked = Like::where('user_id', auth()->id())
             ->where('post_id', $post->id)
             ->exists();
-        // dd($liked);
+
+        $comments = $post->commentaires;
+
+        foreach ($comments as $comment) {
+            $commentUserLiked = false;
+
+            foreach ($comment->likes as $like) {
+                if ($like->userId === auth()->id()) {
+                    $commentUserLiked = true;
+                    break;
+                }
+            }
+
+            $comment->userLiked = $commentUserLiked;
+        }
+        // dd($comments);
         return view('show', [
-            'post' => $post,
-            'liked' => $liked
+            'post' => $showPost,
+            'liked' => $liked,
+            'comments' => $comments,
         ]);
     }
-    //show listing
+    //show create form
     public function create()
     {
         return view('create', [

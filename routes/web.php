@@ -5,6 +5,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\CommentLikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 Route::post('/users', [UserController::class, 'store']);
 //logout User
 Route::post('/logout', [Usercontroller::class, 'logout'])->middleware('auth');
+
+//------------------------------------------------------------------------------------------------
+
+Route::post('/comment/{comment}/like',[CommentLikeController::class, 'toggleLike'])->middleware('auth');
 
 //------------------------------------------------------------------------------------------------
 

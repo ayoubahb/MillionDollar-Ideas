@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CommentLike;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Commentaire extends Model
 {
@@ -22,5 +23,9 @@ class Commentaire extends Model
     public function user()
     {
         return $this->belongsTo(User::class,'userId');
+    }
+    public function likes()
+    {
+        return $this->hasMany(CommentLike::class ,'commentId');
     }
 }

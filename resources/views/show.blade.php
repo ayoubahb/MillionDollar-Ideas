@@ -80,7 +80,7 @@
                             class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600">Post</button>
                     </div>
                 </form>
-                @foreach ($post->commentaires as $commentaire)
+                @foreach ($comments as $commentaire)
                     <x-post-comment :commentaire="$commentaire"></x-post-comment>
                 @endforeach
             </section>
