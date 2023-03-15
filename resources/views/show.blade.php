@@ -55,7 +55,7 @@
                     @csrf
                     <button type="submit">
                         @if ($liked)
-                        <i class="fa-solid fa-heart fa-xl" style="color: red"></i> <strong>Like</strong>
+                        <i class="fa-solid fa-heart fa-xl" style="color: red"></i> <strong>Unlike</strong>
                         @else
                         <i class="fa-regular fa-heart fa-xl"></i> <strong>Like</strong>
                         @endif
