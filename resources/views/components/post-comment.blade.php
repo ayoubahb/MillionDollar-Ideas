@@ -21,13 +21,4 @@
         </p>
     </div>
 </article>
-<form method="POST" action="/comment/{{ $commentaire->id }}/like">
-    @csrf
-    <button type="submit">
-        @if ($commentaire->userLiked)
-            <i class="fa-solid fa-heart" style="color: red"></i> <strong>Unlike</strong>
-        @else
-            <i class="fa-regular fa-heart"></i> <strong>Like</strong>
-        @endif
-    </button>
-</form>
+

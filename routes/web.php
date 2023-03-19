@@ -29,19 +29,11 @@ Route::post('/users', [UserController::class, 'store']);
 //logout User
 Route::post('/logout', [Usercontroller::class, 'logout'])->middleware('auth');
 
-//------------------------------------------------------------------------------------------------
-
-Route::post('/comment/{comment}/like',[CommentLikeController::class, 'toggleLike'])->middleware('auth');
 
 //------------------------------------------------------------------------------------------------
 
-Route::post('/post/{post}/like',[LikeController::class, 'toggleLike'])->middleware('auth');
 
-//------------------------------------------------------------------------------------------------
-Route::post('/post/{post}/commentaire',[CommentaireController::class, 'store'])->middleware('auth');
-
-//------------------------------------------------------------------------------------------------
-Route::get('/',[PostController::class, 'index'])->middleware('auth');
+Route::get('/', [PostController::class, 'index'])->middleware('auth');
 //show form create post
 Route::get('/create', [PostController::class, 'create'])->middleware('auth');
 //show manage posts

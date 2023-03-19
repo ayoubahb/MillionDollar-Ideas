@@ -50,40 +50,13 @@
                 <div class="space-y-4 lg:text-lg leading-loose">
                     <p>{{ $post->description }}</p>
                 </div>
+                {{-- like button --}}
+                <div class="mt-5">
+                    <livewire:like-button :post="$post" :liked="$liked" />
+                </div>
 
-                <form method="POST" action="/post/{{ $post->id }}/like" class="mt-5">
-                    @csrf
-                    <button type="submit">
-                        @if ($liked)
-                        <i class="fa-solid fa-heart fa-xl" style="color: red"></i> <strong>Unlike</strong>
-                        @else
-                        <i class="fa-regular fa-heart fa-xl"></i> <strong>Like</strong>
-                        @endif
-                    </button>
-                </form>
             </div>
-            <section class="col-span-8 col-start-5 mt-10">
-                <form action="/post/{{ $post->id }}/commentaire" method="post"
-                    class="border border-gray-200 p-6 rounded-xl mb-6">
-                    @csrf
-                    <div class="flex items-center">
-                        <img src="/image/user.png" alt="user Image" width="40" />
-                        <h2 class="ml-4">Leave a comment</h2>
-                    </div>
-                    <div class="mt-6">
-                        <input type="text"
-                            class="h-14 w-full text-sm focus:outline-none border-gray-200 rounded-xl focus:ring"
-                            placeholder="Quick, thing of someting" name="text">
-                    </div>
-                    <div class="flex justify-end mt-6 pt-6 border-t border-gray-200">
-                        <button type="submit"
-                            class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600">Post</button>
-                    </div>
-                </form>
-                @foreach ($comments as $commentaire)
-                    <x-post-comment :commentaire="$commentaire"></x-post-comment>
-                @endforeach
-            </section>
+            <livewire:comment-section :post="$post" :comments="$comments"/>
         </article>
     </main>
 </x-layout>
