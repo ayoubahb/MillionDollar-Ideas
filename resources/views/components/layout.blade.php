@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Laravel From Scratch Blog</title>
+    <title>MillionDollar-Ideas</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet" />
@@ -18,7 +18,7 @@
         <nav class="md:flex md:justify-between md:items-center">
             <div>
                 <a href="/"">
-                    <img src="/image/logoidea.png" alt="Laracasts Logo" width="60" class="mx-auto" />
+                    <img src="/image/logoidea.png" alt="Million dollar ideas logo" width="60" class="mx-auto" />
                 </a>
             </div>
 
