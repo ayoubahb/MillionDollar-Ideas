@@ -52,7 +52,7 @@
                 </div>
                 {{-- like button --}}
                 <div class="mt-5">
-                    <livewire:like-button :post="$post" :liked="$liked" />
+                    <livewire:like-button :post="$post" />
                 </div>
 
             </div>

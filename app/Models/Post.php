@@ -24,6 +24,10 @@ class Post extends Model
                 $query->where('name', $category);
             });
         };
+        if ($filters['search'] ?? false) {
+            $query->where('title', 'like', '%' . request('search') . '%')
+            ->orWhere('description', 'like', '%' . request('search') . '%');
+        };
     }
 
     public function user()

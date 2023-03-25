@@ -15,13 +15,14 @@ class PostController extends Controller
     {
         $categories = Category::all();
 
-        $posts = Post::with('user', 'categories')->latest()->filter(request(['category']))->get();
-        // dd($posts);
+        $posts = Post::with('user', 'categories')->latest()->filter(request(['category', 'search']))->get();
+
         return view('index', [
             'categories' => $categories,
             'posts' => $posts,
         ]);
     }
+
     //show listing
     public function show(Post $post)
     {
@@ -45,13 +46,14 @@ class PostController extends Controller
 
             $comment->userLiked = $commentUserLiked;
         }
-        // dd($comments);
+
         return view('show', [
             'post' => $showPost,
             'liked' => $liked,
             'comments' => $comments,
         ]);
     }
+
     //show create form
     public function create()
     {
@@ -59,11 +61,13 @@ class PostController extends Controller
             'categories' => Category::all()
         ]);
     }
+
     //show listing
     public function manage()
     {
         return view('manage', ['posts' => auth()->user()->posts()->get()]);
     }
+
     public function store(Request $request)
     {
         // dd($request);
@@ -87,6 +91,7 @@ class PostController extends Controller
 
         return redirect('/')->with('message', 'Post added seccessfully');
     }
+
     //show edit form
     public function edit(Post $post)
     {
@@ -122,6 +127,7 @@ class PostController extends Controller
 
         return redirect('/posts/manage')->with('message', 'Post updated successfully');
     }
+
     //delete
     public function destroy(Post $post)
     {

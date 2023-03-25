@@ -19,19 +19,7 @@ class CommentSection extends Component
     {
         $this->post = $post;
         $this->comments = $post->commentaires;
-
-        foreach ($this->comments as $comment) {
-            $commentUserLiked = false;
-
-            foreach ($comment->likes as $like) {
-                if ($like->userId === auth()->id()) {
-                    $commentUserLiked = true;
-                    break;
-                }
-            }
-
-            $comment->userLiked = $commentUserLiked;
-        }
+        $this->userLikedComments($this->comments);
     }
 
     public function likeComment($commentId)
