@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-    //show Posts 
+    //show all posts 
     public function index()
     {
         $categories = Category::all();
@@ -23,7 +23,7 @@ class PostController extends Controller
         ]);
     }
 
-    //show listing
+    //show one post
     public function show(Post $post)
     {
         $showPost = Post::with(['commentaires.likes.user', 'likes.user'])->findOrFail($post->id);
@@ -62,12 +62,7 @@ class PostController extends Controller
         ]);
     }
 
-    //show listing
-    public function manage()
-    {
-        return view('manage', ['posts' => auth()->user()->posts()->get()]);
-    }
-
+    //create post
     public function store(Request $request)
     {
         $formFields = $request->validate(([
@@ -75,22 +70,27 @@ class PostController extends Controller
             'title' => 'required',
             'categories' => 'required|array',
         ]));
-
+        
         $post = new Post();
         $post->description = $formFields['description'];
         $post->title = $formFields['title'];
         $post->userId = auth()->id();
-
+        
         if ($request->hasFile('image')) {
             $post->file = $request->file('image')->store('images', 'public');
         }
         $post->save();
-
+        
         $post->categories()->attach($formFields['categories']);
-
+        
         return redirect('/')->with('message', 'Post added seccessfully');
     }
-
+    //manage post
+    public function manage()
+    {
+        return view('manage', ['posts' => auth()->user()->posts()->get()]);
+    }
+    
     //show edit form
     public function edit(Post $post)
     {
@@ -100,7 +100,7 @@ class PostController extends Controller
         ]);
     }
 
-    // update
+    //update post
     public function update(Request $request, Post $post)
     {
         $formFields = $request->validate([
@@ -121,7 +121,7 @@ class PostController extends Controller
         return redirect('/posts/manage')->with('message', 'Post updated successfully');
     }
 
-    //delete
+    //delete post
     public function destroy(Post $post)
     {
         $post->delete();
