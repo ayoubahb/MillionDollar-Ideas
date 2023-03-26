@@ -11,7 +11,6 @@ use PHPUnit\Framework\Constraint\IsFalse;
 class CommentSection extends Component
 {
     public $post;
-    public $likedComment = false;
     public $comments;
     public $commentText;
 

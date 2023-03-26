@@ -56,7 +56,7 @@
                 </div>
 
             </div>
-            <livewire:comment-section :post="$post" :comments="$comments" />
+            <livewire:comment-section :post="$post" :comments="$post->commentaires" />
         </article>
     </main>
 </x-layout>

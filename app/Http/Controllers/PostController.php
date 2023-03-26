@@ -32,25 +32,9 @@ class PostController extends Controller
             ->where('post_id', $post->id)
             ->exists();
 
-        $comments = $post->commentaires;
-
-        foreach ($comments as $comment) {
-            $commentUserLiked = false;
-
-            foreach ($comment->likes as $like) {
-                if ($like->userId === auth()->id()) {
-                    $commentUserLiked = true;
-                    break;
-                }
-            }
-
-            $comment->userLiked = $commentUserLiked;
-        }
-
         return view('show', [
             'post' => $showPost,
             'liked' => $liked,
-            'comments' => $comments,
         ]);
     }
 
