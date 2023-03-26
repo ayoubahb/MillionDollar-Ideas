@@ -6,7 +6,8 @@
         @csrf
         @method('PUT')
         <div class="flex justify-center">
-            <img src="{{ $post->file ? asset('storage/' . $post->file) : asset('image/no-image.png') }}" alt="Post image" width="150px"/>
+            <img src="{{ $post->file ? asset('storage/' . $post->file) : asset('image/no-image.png') }}" alt="Post image"
+                width="150px" />
         </div>
         <div class="relative z-0 w-full mb-6 group">
             <input type="text" name="title"
@@ -26,23 +27,14 @@
 
         <div class="flex items-center mb-4 flex-wrap">
             @foreach ($categories as $category)
-                @if (in_array($category->name, $postctg))
-                    <div class="w-1/3 md:w-1/4">
-                        <input id="{{ $category->id }}" type="checkbox" value="{{ $category->id }}" checked
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                            name="categories[]">
-                        <label for="{{ $category->id }}"
-                            class="ml-2 text-sm font-medium text-black ">{{ $category->name }}</label>
-                    </div>
-                @else
-                    <div class="w-1/3 md:w-1/4">
-                        <input id="{{ $category->id }}" type="checkbox" value="{{ $category->id }}"
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                            name="categories[]">
-                        <label for="{{ $category->id }}"
-                            class="ml-2 text-sm font-medium text-black ">{{ $category->name }}</label>
-                    </div>
-                @endif
+                <div class="w-1/3 md:w-1/4">
+                    <input id="{{ $category->id }}" type="checkbox" value="{{ $category->id }}"
+                        @if ($post->categories->pluck('id')->contains($category->id)) checked @endif
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        name="categories[]">
+                    <label for="{{ $category->id }}"
+                        class="ml-2 text-sm font-medium text-black ">{{ $category->name }}</label>
+                </div>
             @endforeach
         </div>
 

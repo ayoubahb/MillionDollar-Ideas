@@ -70,7 +70,6 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $formFields = $request->validate(([
             'description'  => 'required',
             'title' => 'required',
@@ -95,14 +94,8 @@ class PostController extends Controller
     //show edit form
     public function edit(Post $post)
     {
-        $arr = [];
-        for ($i = 0; $i < count($post->categories); $i++) {
-            array_push($arr, $post->categories[$i]->name);
-        }
-
         return view('edit', [
             'post' => $post,
-            'postctg' => $arr,
             'categories' => Category::all(),
         ]);
     }
