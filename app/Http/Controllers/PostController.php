@@ -70,27 +70,24 @@ class PostController extends Controller
             'title' => 'required',
             'categories' => 'required|array',
         ]));
-        
-        $post = new Post();
-        $post->description = $formFields['description'];
-        $post->title = $formFields['title'];
-        $post->userId = auth()->id();
-        
+
+        $formFields['userId'] = auth()->id();
+
         if ($request->hasFile('image')) {
-            $post->file = $request->file('image')->store('images', 'public');
+            $formFields['file'] = $request->file('image')->store('images', 'public');
         }
-        $post->save();
-        
+        $post = Post::create($formFields);
+
         $post->categories()->attach($formFields['categories']);
-        
-        return redirect('/')->with('message', 'Post added seccessfully');
+
+        return redirect('/')->with('message', 'Post added successfully');
     }
     //manage post
     public function manage()
     {
         return view('manage', ['posts' => auth()->user()->posts()->get()]);
     }
-    
+
     //show edit form
     public function edit(Post $post)
     {
