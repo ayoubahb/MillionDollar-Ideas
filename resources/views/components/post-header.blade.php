@@ -13,7 +13,8 @@
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                     @foreach ($categories as $category)
                         <li>
-                            <a href="/?category={{ $category->name }}" class="block pl-3 text-left py-1 text-black dark:hover:bg-gray-600 dark:hover:text-white">{{ $category->name }}</a>
+                            <a href="/?category={{ $category->name }}"
+                                class="block pl-3 text-left py-1 text-black dark:hover:bg-gray-600 dark:hover:text-white">{{ $category->name }}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -33,7 +34,8 @@
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2 w-52 h-10 ">
             <form action="/">
                 <input type="text" name="search" placeholder="Find something"
-                    class="bg-transparent placeholder-black font-semibold text-sm border-0 focus:outline-none" />
+                    class="bg-transparent placeholder-black font-semibold text-sm border-0 focus:outline-none"
+                    value="{{ request()->input('search') }}" />
             </form>
         </div>
     </div>
